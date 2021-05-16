@@ -29,7 +29,7 @@ async def on_message(message):
     if message.author.id != client.user.id:
         matches = {word for word in BANNED_WORDS if word in message.content}
         if matches:
-            alert = f'{message.author.name}: {message.content} with includes the words {matches} {message.jump_url}'
+            alert = f'{message.author.name}: {message.content} which includes the words {matches} {message.jump_url}'
             chan = discord.utils.get(message.guild.channels, name=os.getenv('ALERT_CHANNEL'))
             await chan.send(alert)
 
