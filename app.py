@@ -6,15 +6,9 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client()
 
-BANNED_WORDS = [
-    'shit',
-    'piss',
-    'fuck',
-    'cunt',
-    'cocksucker',
-    'motherfucker',
-    'tits',
-]
+f = open(os.getenv('WORD_LIST'), 'r+')
+BANNED_WORDS = [line.strip() for line in f.readlines()]
+f.close()
 
 @client.event
 async def on_ready():
