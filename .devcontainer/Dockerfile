@@ -26,6 +26,12 @@ COPY poetry.lock /tmp/poetry
 RUN poetry install
 RUN rm /tmp/poetry/*
 
+WORKDIR /code
+
+COPY . /code
+
+CMD python app.py
+
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
