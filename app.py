@@ -7,7 +7,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client()
 
 f = open(os.getenv('WORD_LIST'), 'r+')
-BANNED_WORDS = [line.strip() for line in f.readlines()]
+BANNED_WORDS = [line.strip().lower() for line in f.readlines()]
 f.close()
 
 IGNORED_CHANNELS = os.getenv('IGNORED_CHANNELS').split(',')
@@ -23,7 +23,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.author.id != client.user.id and message.channel.name not in IGNORED_CHANNELS:
-        matches = {word for word in BANNED_WORDS if word in message.content}
+        matches = {word for word in BANNED_WORDS if word in message.content.lower()}
         if matches:
             alert = f'{message.author.name}: {message.content} which includes the words {matches} {message.jump_url}'
             chan = discord.utils.get(message.guild.channels, name=os.getenv('ALERT_CHANNEL'))
