@@ -2,11 +2,11 @@
 
 ## Dockerfile & VSCode devcontainer included
 
-THere are four settings:
-DISCORD_TOKEN: An API token for discord
-ALERT_CHANNEL: The channel you wish discord snitch to report to
-WORD_LIST: The file containing the list of words you wish to watch
-IGNORED_CHANNELS: A comma-separated list of channel names to not report on
+There are four settings:
+- DISCORD_TOKEN: An API token for discord
+- ALERT_CHANNEL: The channel you wish discord snitch to report to
+- WORD_LIST: The name of a file in this directory containing the list of words you wish to watch
+- IGNORED_CHANNELS: A comma-separated list of channel names to not report on
 
 The word list file should be a text file with one word per line.
 
