@@ -11,7 +11,7 @@ There are four settings:
 The word list file should be a text file with one word per line.
 
 ### Devcontainer usage:
-   - Copy `.devcontainer/devcontainer.env.dist` to `.devcontainer/devcontainer.env.dist`
+   - Copy `.devcontainer/devcontainer.env.dist` to `.devcontainer/devcontainer.env`
    - In the file, set the four environment variables: DISCORD_TOKEN, WORD_LIST, ALERT_CHANNEL & IGNORED_CHANNELS
    - Run app.py (F5)
 
@@ -26,6 +26,6 @@ The word list file should be a text file with one word per line.
 ### Docker usage:
    - Add a wordlist of your choice
    - Build the dockerfile with the following command `docker build . -f .devcontainer/Dockerfile -t your-tag`
-   - Copy `.devcontainer/devcontainer.env.dist` to `.devcontainer/devcontainer.env.dist`
+   - Copy `.devcontainer/devcontainer.env.dist` to `.devcontainer/devcontainer.env`
    - In the file, set the four environment variables: DISCORD_TOKEN, WORD_LIST, ALERT_CHANNEL & IGNORED_CHANNELS
    - Run the dockerfile with the following command `docker run --env-file .devcontainer/devcontainer.env your-tag`
