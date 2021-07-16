@@ -12,6 +12,14 @@ f.close()
 
 IGNORED_CHANNELS = os.getenv('IGNORED_CHANNELS').split(',')
 
+async def process_message(author, content, guild, channel, jump_url):
+    if author.id != client.user.id and channel.name not in IGNORED_CHANNELS:
+        matches = {word for word in BANNED_WORDS if word in content.lower()}
+        if matches:
+            alert = f'{author.name}: {content} which includes the words {matches} {jump_url}'
+            chan = discord.utils.get(guild.channels, name=os.getenv('ALERT_CHANNEL'))
+            await chan.send(alert)@client.event
+
 @client.event
 async def on_ready():
     for guild in client.guilds:
@@ -22,11 +30,23 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.author.id != client.user.id and message.channel.name not in IGNORED_CHANNELS:
-        matches = {word for word in BANNED_WORDS if word in message.content.lower()}
-        if matches:
-            alert = f'{message.author.name}: {message.content} which includes the words {matches} {message.jump_url}'
-            chan = discord.utils.get(message.guild.channels, name=os.getenv('ALERT_CHANNEL'))
-            await chan.send(alert)
+    await process_message(
+        message.author,
+        message.content,
+        message.guild,
+        message.channel,
+        message.jump_url,
+    )
+
+@client.event
+async def on_raw_message_edit(payload):
+    if payload.data['content'] and payload.cached_message:
+        await process_message(
+            payload.cached_message.author,
+            payload.data['content'],
+            payload.cached_message.guild,
+            payload.cached_message.channel,
+            payload.cached_message.jump_url,
+        )
 
 client.run(TOKEN)
