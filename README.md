@@ -29,7 +29,7 @@ The word list file should be a text file with one word per line.
 
 ### Suggested Docker usage:
    - Add a wordlist of your choice
-   - Build the dockerfile with the following command `docker build . -f .devcontainer/Dockerfile -t your-tag`
+   - Build the dockerfile with the following command `docker build . -t your-tag`
    - Copy `.devcontainer/devcontainer.env.dist` to `.devcontainer/devcontainer.env`
    - In the file, set the six environment variables
    - Run the dockerfile with the following command `docker run --env-file .devcontainer/devcontainer.env your-tag`

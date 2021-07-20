@@ -26,7 +26,7 @@ log_settings = {
 }
 if LOG_FILE:
     log_settings['filename'] = LOG_FILE
-    # log_settings['encoding'] = 'utf-8'
+    log_settings['encoding'] = 'utf-8'
 logging.basicConfig(**log_settings)
 
 
