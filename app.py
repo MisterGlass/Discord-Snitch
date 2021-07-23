@@ -10,7 +10,7 @@ REMOVED_CHARS = '_*'
 TOKEN = os.getenv('DISCORD_TOKEN')
 LOG_FILE = os.getenv('LOG_FILE')
 
-client = discord.Client()
+client = discord.Client(status='invisible')
 
 f = open(os.getenv('WORD_LIST', 'words'), 'r+')
 BANNED_WORDS = [line.strip().lower() for line in f.readlines()]
@@ -58,6 +58,7 @@ async def _process_message(author, content, guild, channel, jump_url):
 # Initialize
 @client.event
 async def on_ready():
+    client.change_presence(status=discord.Status.invisible)
     for guild in client.guilds:
         logging.warning(
             f'{client.user} is connected to the following guild:\n'
