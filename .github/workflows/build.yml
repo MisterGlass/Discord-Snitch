@@ -22,4 +22,4 @@ jobs:
         TW_TOKEN: ${{ secrets.TW_TOKEN }}
         TW_INSTANCE: ${{ secrets.TW_INSTANCE }}
       run: |
-        echo "$env:TW_HANDLE"
+        echo $TW_HANDLE
