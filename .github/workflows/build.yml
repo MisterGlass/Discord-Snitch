@@ -24,4 +24,4 @@ jobs:
         docker build --tag discordsnitch . 
     - name: Run twigs
       run: |
-        twigs docker --image discordsnitch
+        twigs docker --image discordsnitdch
