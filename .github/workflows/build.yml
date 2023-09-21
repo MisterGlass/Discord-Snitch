@@ -25,3 +25,5 @@ jobs:
     - name: Run twigs
       run: |
         twigs -v docker --image discordsnitch
+    - name: Scan repo
+        twigs -v repo
