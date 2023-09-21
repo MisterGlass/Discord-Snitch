@@ -9,17 +9,19 @@ on:
       - main
 
 jobs:
-  test:
+  twigs:
     runs-on: ubuntu-latest
+    container:
+      image: threatworx/twigs
+      env:
+        TW_HANDLE: ${{ secrets.TW_HANDLE }}
+        TW_TOKEN: ${{ secrets.TW_TOKEN }}
+        TW_INSTANCE: ${{ secrets.TW_INSTANCE }}
     steps:
     - uses: actions/checkout@v2
     - name: Build
       run: |
         docker build .
     - name: Run twigs
-      env:
-        TW_HANDLE: ${{ secrets.TW_HANDLE }}
-        TW_TOKEN: ${{ secrets.TW_TOKEN }}
-        TW_INSTANCE: ${{ secrets.TW_INSTANCE }}
       run: |
-        echo $TW_HANDLE
+        twigs -h
