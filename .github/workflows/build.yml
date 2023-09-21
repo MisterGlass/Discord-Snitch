@@ -17,11 +17,9 @@ jobs:
       run: |
         docker build .
     - name: Run twigs
-    env:
-      TW_HANDLE: ${{ secrets.TW_HANDLE }}
-      TW_TOKEN: ${{ secrets.TW_TOKEN }}
-      TW_INSTANCE: ${{ secrets.TW_INSTANCE }}
-      run: |
-        echo "$env:TW_HANDLE"
       env:
         TW_HANDLE: ${{ secrets.TW_HANDLE }}
+        TW_TOKEN: ${{ secrets.TW_TOKEN }}
+        TW_INSTANCE: ${{ secrets.TW_INSTANCE }}
+      run: |
+        echo "$env:TW_HANDLE"
